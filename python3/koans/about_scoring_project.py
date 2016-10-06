@@ -34,7 +34,47 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+
+
+    count_numbers = {}
+
+    summa = 0
+    if dice == []:
+        return 0
+
+    for i in dice:
+        count_numbers[i] = count_numbers.get(i, 0) +1
+
+    for value, numFound in count_numbers.items():
+        #while numFound!=0:
+        if value == 1 and numFound >= 3:
+            summa += 1000
+            numFound -= 3
+        if value == 1 and numFound < 3 and numFound>=0:
+            summa += 100*numFound
+            numFound -= numFound
+        if value in range(2,7) and numFound >= 3:
+            summa += value*100
+            numFound -= 3
+        if value == 5 and numFound < 3 and numFound >=0:
+            summa += 50*numFound
+            numFound-=numFound
+    #     if value in range(2,7) and value !=5 and numFound<3 and numFound>0:
+    #         numFound=0
+    #     if value == 1 and numFound >= 3:
+    #         summa += 1000
+    #         numFound -=3
+    #     if value != 1 and numFound >= 3:
+    #         summa += value * 100
+    #         numFound -= 3
+    #     if value == 1 and numFound <= 2:
+    #         summa += numFound * 100
+    #     if value == 5 and numFound <= 2:
+    #         summa += numFound * 50
+
+    return summa
+
+
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
